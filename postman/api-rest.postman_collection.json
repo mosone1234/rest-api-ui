@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "50f6a7fe-8cb6-4837-bf02-7800db6d91e9",
+		"_postman_id": "1a1cd1ef-d42d-43b7-aafb-ebf758301153",
 		"name": "api-rest",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "13273244"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -145,6 +144,35 @@
 						"api",
 						"users",
 						"623010e812d9a4142f58405f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT (Ruta para modificar un usuario completo)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rosario\",\r\n    \"lastName\": \"Gómez\",\r\n    \"email\": \"rosari111o@ingesa.com\",\r\n    \"phoneNumber\": \"+539992637761\",\r\n    \"cc\": 1715029938\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/api/users/62df668d791860600e8185eb",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"62df668d791860600e8185eb"
 					]
 				}
 			},
