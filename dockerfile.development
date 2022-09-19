@@ -1,0 +1,6 @@
+# NODE VERSION
+FROM node:16.17-alpine
+COPY . ./rest-api-ui
+WORKDIR /rest-api-ui
+RUN yarn install
+CMD [ "yarn", "start" ]
