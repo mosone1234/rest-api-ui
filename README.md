@@ -104,12 +104,12 @@ docker-compose -f docker/app-staging.yml up -d
 ```
 **Puerto de ejecuccion : 3200**
 
-PRODUCTION, para iniciar rest-api-ui en produccion en escena con docker en un contenedor, ejecute:
+PRODUCTION, para iniciar rest-api-ui en produccion con docker en un contenedor, ejecute:
 
 ```
 docker-compose -f docker/app-prod.yml up -d
 ```
-**Puerto de ejecuccion : https://restapiui.ml**
+**Puerto de ejecuccion : https://ayarrestapiui.ml/**
 
 Para parar y remover el contenedor, ejecute:
 
