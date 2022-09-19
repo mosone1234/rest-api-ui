@@ -1,30 +1,23 @@
 import {
-  useState,
   useEffect
 } from 'react'
 
-import axios from 'axios'
+// user.slice get users redux
+import { getUsers } from '../redux/user.slice'
+import { useDispatch, useSelector } from "react-redux"
 
 const useUsers = () => {
-  const [users, setUsers] = useState([])
+  const users = useSelector((state) => state.user.items);
+  const totalElements = useSelector((state) => state.user.totalElements);
+  const dispatch = useDispatch();
 
   /** GET USERS */
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const { data } = await axios.get(process.env.REACT_APP_USERS_URL)
-
-        setUsers(data)
-      } catch (err) {
-        console.log('KO::USERS', err)
-      }
-    }
-
-    getUsers()
-  }, [])
+    dispatch(getUsers(0, 10))
+  }, [dispatch])
 
   return {
-    users
+    users, totalElements
   }
 }
 
