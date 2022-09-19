@@ -1,4 +1,3 @@
-import { AlertColor } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const NotificationSlice = createSlice({

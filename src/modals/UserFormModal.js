@@ -26,11 +26,14 @@ import {
   HandleKeyDownPhoneNumber,
 } from '../utils/Validation'
 
+import { useSelector } from "react-redux"
+
 const UserFormModal = (props) => {
   const [open, setOpen] = React.useState(false)
   const classes = useFormStyles()
   const dispatch = useDispatch()
   const { user } = props
+  const loading = useSelector((state) => state.user.loading);
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -42,6 +45,8 @@ const UserFormModal = (props) => {
 
   const onSubmitFinish = (usr) => {
     dispatch(updateUser(usr))
+    if (!loading)
+      handleClose()
   }
 
   const validate = (values) => {
@@ -167,7 +172,7 @@ const UserFormModal = (props) => {
                   handleBlur={propform.handleBlur}
                   errors={propform.errors}
                   touched={propform.touched}
-                  classe={classes}
+                  classe={classes.formFieldTwo}
                   classError={classes.helperTextError}
                   press={HandleKeyDownOnlyNumbers}
                 />

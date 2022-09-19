@@ -10,10 +10,12 @@ import {
   IconButton,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { useSelector } from "react-redux"
 
 const DeleteModal = (props) => {
   const [open, setOpen] = React.useState(false)
   const { title, description, handleFunction } = props
+  const loading = useSelector((state) => state.user.loading);
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -21,6 +23,12 @@ const DeleteModal = (props) => {
 
   const handleClose = () => {
     setOpen(false)
+  }
+
+  const deleteOne = () => {
+    handleFunction()
+    if (!loading)
+      handleClose()
   }
   
   return (
@@ -44,7 +52,7 @@ const DeleteModal = (props) => {
           <Button onClick={handleClose} color="info">
             Cancelar
           </Button>
-          <Button onClick={handleFunction} color="error" autoFocus>
+          <Button onClick={deleteOne} color="error" autoFocus>
             Eliminar
           </Button>
         </DialogActions>

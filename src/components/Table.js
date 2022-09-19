@@ -12,28 +12,37 @@ import {
 
 import useUsers from '../hooks/useUsers'
 
-import { getUsers, deleteUser } from '../redux/user.slice'
+import { getUsers, deleteUser, changeRow } from '../redux/user.slice'
 import { useDispatch } from "react-redux"
 
-import DeleteModal from '../modals/DeleteModal';
-import UserFormModal from '../modals/UserFormModal';
+import DeleteModal from '../modals/DeleteModal'
+import UserFormModal from '../modals/UserFormModal'
+import { useSelector } from "react-redux"
 
 const TableData = () => {
   const { users, totalElements } = useUsers()
   const dispatch = useDispatch()
+  const pa = useSelector((state) => state.user.page)
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
- 
+
   useEffect(() => {
     dispatch(getUsers((page * rowsPerPage), rowsPerPage))
-  }, [page, rowsPerPage])
+  }, [page, rowsPerPage, dispatch])
+
+  useEffect(() => {
+    if (pa === 1) {
+      setPage(0)
+      dispatch(changeRow({row: rowsPerPage}))
+    }
+  }, [pa, rowsPerPage, dispatch])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
   }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
+    setRowsPerPage(parseInt(event.target.value))
     setPage(0)
   }
 

@@ -8,6 +8,8 @@ const userSlice = createSlice({
     items: [],
     totalElements: 0,
     loading: false,
+    page: 0,
+    row: 10,
   },
   reducers: {
     addUser(state, action) {
@@ -25,8 +27,6 @@ const userSlice = createSlice({
     getUsersStart(state) {
       return {
         ...state,
-        items: [],
-        totalElements: 0,
         loading: true,
       }
     },
@@ -44,62 +44,82 @@ const userSlice = createSlice({
         loading: action.payload.loading,
       }
     },
+    // PAGINACION
+    changePage(state, action) {
+      return {
+        ...state,
+        page: action.payload.page,
+      }
+    },
+    changeRow(state, action) {
+      return {
+        ...state,
+        row: action.payload.row
+      }
+    },
   },
 })
 
-export const { addUser, getUsersStart, getAllUsers } = userSlice.actions
+export const { addUser, getUsersStart, getAllUsers, changePage, changeRow } = userSlice.actions
 
 export default userSlice.reducer
 
+// Obtener todos los usuarios con paginacion
 export const getUsers = (skip, limit) => {
   return async (dispatch) => {
-      dispatch(getUsersStart())
-      try {
-          const response = await axios.get(process.env.REACT_APP_USERS_URL + "?skip=" + skip + "&limit=" + limit)
-          const responseTotal = await axios.get(process.env.REACT_APP_USERS_URL)
-          dispatch(getAllUsers({ items: response.data, totalElements: responseTotal.data.length, loading: false}))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
-      } catch (error) {
-          dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 7000}))
-      }
+    dispatch(getUsersStart())
+    try {
+        const response = await axios.get(process.env.REACT_APP_USERS_URL + "?skip=" + skip + "&limit=" + limit)
+        const responseTotal = await axios.get(process.env.REACT_APP_USERS_URL)
+        dispatch(getAllUsers({ items: response.data, totalElements: responseTotal.data.length, loading: false}))
+        dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
+    } catch (error) {
+        dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 8000}))
+    }
   }
 }
-
+// Crear usuario 
 export const createUser = (user) => {
-  return async (dispatch) => {
-      dispatch(getUsersStart())
-      try {
-          const { data } = await axios.post(process.env.REACT_APP_USERS_URL, user)
-          dispatch(getUsers(0, 10))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
-      } catch (error) {
-          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 7000}))
-      }
+  return async (dispatch, getState) => {
+    dispatch(getUsersStart())
+    dispatch(changePage({ page: 1 }))
+    try {
+        await axios.post(process.env.REACT_APP_USERS_URL, user)
+        dispatch(changePage({ page: 0}))
+        dispatch(getUsers(0, getState().user.row))
+        dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
+    } catch (error) {
+        dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 8000}))
+    }
   }
 }
-
+// Actualizar usuario
 export const updateUser = (user) => {
-  return async (dispatch) => {
-      dispatch(getUsersStart())
-      try {
-          const { data } = await axios.put(process.env.REACT_APP_USERS_URL + "/" + user._id, user)
-          dispatch(getUsers(0, 10))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
-      } catch (error) {
-          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 7000}))
-      }
+  return async (dispatch, getState) => {
+    dispatch(getUsersStart())
+    dispatch(changePage({ page: 1 }))
+    try {
+        await axios.put(process.env.REACT_APP_USERS_URL + "/" + user._id, user)
+        dispatch(changePage({ page: 0}))
+        dispatch(getUsers(0, getState().user.row))
+        dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
+    } catch (error) {
+        dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 8000}))
+    }
   }
 }
-
+// Eliminar usuario
 export const deleteUser = (id) => {
-  return async (dispatch) => {
-      dispatch(getUsersStart())
-      try {
-          const response = await axios.delete(process.env.REACT_APP_USERS_URL + "/" + id)
-          dispatch(getUsers(0, 10))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
-      } catch (error) {
-          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 7000}))
-      }
+  return async (dispatch, getState) => {
+    dispatch(getUsersStart())
+    dispatch(changePage({ page: 1 }))
+    try {
+        await axios.delete(process.env.REACT_APP_USERS_URL + "/" + id)
+        dispatch(changePage({ page: 0 }))
+        dispatch(getUsers(0, getState().user.row))
+        dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
+    } catch (error) {
+        dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 8000}))
+    }
   }
 }
