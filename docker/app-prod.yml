@@ -27,15 +27,15 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   rest-api-ui:
-    image: rest-api-ui:lastest
+    image: xhos1234/rest-api-ui-prod:latest
     container_name: rest-api-ui
     restart: always
     expose:
       - 80
     environment:
-      - VIRTUAL_HOST=restapiui.ml,www.restapiui.ml
-      - LETSENCRYPT_HOST=restapiui.ml,www.restapiui.ml
-      - LETSENCRYPT_EMAIL=restapiui@restapiui.ml
+      - VIRTUAL_HOST=ayarrestapiui.ml,www.ayarrestapiui.ml
+      - LETSENCRYPT_HOST=ayarrestapiui.ml,www.ayarrestapiui.ml
+      - LETSENCRYPT_EMAIL=ayarrestapiui@ayarrestapiui.ml
 
 volumes:
   certs:
