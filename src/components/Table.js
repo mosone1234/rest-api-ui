@@ -15,6 +15,9 @@ import useUsers from '../hooks/useUsers'
 import { getUsers, deleteUser } from '../redux/user.slice'
 import { useDispatch } from "react-redux"
 
+import DeleteModal from '../modals/DeleteModal';
+import UserFormModal from '../modals/UserFormModal';
+
 const TableData = () => {
   const { users, totalElements } = useUsers()
   const dispatch = useDispatch()
@@ -61,6 +64,9 @@ const TableData = () => {
               <TableCell>
                 <strong>C.C.</strong>
               </TableCell>
+              <TableCell>
+                  <strong>Accciones</strong>
+                </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -80,9 +86,21 @@ const TableData = () => {
                 <TableCell>
                   {user.phoneNumber}
                 </TableCell>
-                <TableCell>
+                <TableCell padding={"none"}>
                   {user.cc}
                 </TableCell>
+                <TableCell padding={"none"}>
+                    <UserFormModal
+                      user={user}
+                    />
+                    <DeleteModal
+                      title={"Esta seguro de eliminar el usuario"}
+                      description={"Se eliminara el usuario (" + user.name + " " + user.lastName + ")" }
+                      handleFunction={() => {
+                        deleteUserAction(user._id)
+                      }}
+                    />
+                  </TableCell>
               </TableRow>
             ))}
           </TableBody>
