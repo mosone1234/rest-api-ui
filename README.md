@@ -40,3 +40,86 @@
   Cualquier duda sobre el ejercicio, por favor remitirla a Santiago Sánchez ssanchez@todo1.com para su aclaramiento.
 
   Mucha suerte!!!
+
+  # REST-API-UI FRONTEND 
+
+**Instalar dependencias**
+
+```
+ yarn install
+```
+**Correr Proyecto modo Desarrollo**
+
+```
+ yarn start
+```
+**Correr Proyecto modo Produccion**
+
+``` 
+yarn build
+```
+**Puerto donde se ejecuta el frontend**
+
+```
+ http://localhost:3000
+```
+# Librerias Utilizadas
+
+```
+*  dependencies
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.10.3", // New
+    "@mui/material": "^5.5.1",
+    "@mui/styles": "^5.5.1",
+    "@reduxjs/toolkit": "^1.8.5", // New
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "axios": "^0.26.1",
+    "formik": "^2.2.9", // New
+    "prop-types": "^15.8.1", // New
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "web-vitals": "^2.1.0"
+```
+
+
+# Usar docker para development staging production (optional)
+
+Puede usar Docker para mejorar su experiencia de desarrollo. Hay varias configuraciones de docker-compose disponibles en la carpeta [docker](docker) para iniciar los servicios de terceros requeridos.
+
+DEVELOPMENT, para iniciar rest-api-ui en modo desarollo con docker en un contenedor, ejecute:
+
+```
+docker-compose -f docker/app-dev.yml up -d
+```
+**Puerto de ejecuccion : 3100**
+
+STAGING, para iniciar rest-api-ui en modo puesta en escena con docker en un contenedor, ejecute:
+
+```
+docker-compose -f docker/app-staging.yml up -d
+```
+**Puerto de ejecuccion : 3200**
+
+PRODUCTION, para iniciar rest-api-ui en produccion en escena con docker en un contenedor, ejecute:
+
+```
+docker-compose -f docker/app-prod.yml up -d
+```
+**Puerto de ejecuccion : https://restapiui.ml**
+
+Para parar y remover el contenedor, ejecute:
+
+```
+docker-compose -f docker/{docker-compose}.yml down
+```
+
+También puede dockerizar por completo su aplicación y todos los servicios de los que depende.
+Para lograr esto, primero cree una imagen acoplable de su aplicación ejecutando:
+
+```
+docker build . -t rest-api-ui:latest
+```
