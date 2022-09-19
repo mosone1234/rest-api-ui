@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react'
 import {
   Table,
   TableBody,
@@ -5,63 +6,99 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  TablePagination,
 } from '@mui/material'
 
 import useUsers from '../hooks/useUsers'
 
+import { getUsers, deleteUser } from '../redux/user.slice'
+import { useDispatch } from "react-redux"
+
 const TableData = () => {
-  const { users } = useUsers()
+  const { users, totalElements } = useUsers()
+  const dispatch = useDispatch()
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
  
+  useEffect(() => {
+    dispatch(getUsers((page * rowsPerPage), rowsPerPage))
+  }, [page, rowsPerPage])
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(0)
+  }
+
+  const deleteUserAction = (id) => {
+    dispatch(deleteUser(id))
+  }
+
   return (
-    <TableContainer
-      component={Paper}
-    >
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <strong>Nombre</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Apellido</strong>
-            </TableCell>
-            <TableCell>
-              <strong>E-mail</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Teléfono</strong>
-            </TableCell>
-            <TableCell>
-              <strong>C.C.</strong>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map((user, key) => (
-            <TableRow
-              key={key}
-            >
+    <>
+      <TableContainer
+        component={Paper}
+      >
+        <Table>
+          <TableHead>
+            <TableRow>
               <TableCell>
-                {user.name}
+                <strong>Nombre</strong>
               </TableCell>
               <TableCell>
-                {user.lastName}
+                <strong>Apellido</strong>
               </TableCell>
               <TableCell>
-                {user.email}
+                <strong>E-mail</strong>
               </TableCell>
               <TableCell>
-                {user.phoneNumber}
+                <strong>Teléfono</strong>
               </TableCell>
               <TableCell>
-                {user.cc}
+                <strong>C.C.</strong>
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {users.map((user, key) => (
+              <TableRow
+                key={key}
+              >
+                <TableCell>
+                  {user.name}
+                </TableCell>
+                <TableCell>
+                  {user.lastName}
+                </TableCell>
+                <TableCell>
+                  {user.email}
+                </TableCell>
+                <TableCell>
+                  {user.phoneNumber}
+                </TableCell>
+                <TableCell>
+                  {user.cc}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25, 50, 100]}
+        count={totalElements}
+        component="div"
+        page={totalElements <= 0 ? 0 : page}
+        rowsPerPage={rowsPerPage}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage={"Elementos por pagina"}
+      />
+    </>
   )
 }
 
