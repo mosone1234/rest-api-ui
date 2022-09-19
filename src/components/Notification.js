@@ -17,10 +17,19 @@ export const Notification = () => {
       open={notification.open}
       autoHideDuration={notification.timeout}
       onClose={handleClose}
+      style={{
+        bottom: "24px",
+        left: "108px",
+        right: "auto",
+        width: "21rem"
+      }}
     >
       <Alert variant="outlined"
         onClose={handleClose}
         severity={notification.type}
+        style={{
+          width: "21rem"
+        }}
       >
         {notification.message}
       </Alert>

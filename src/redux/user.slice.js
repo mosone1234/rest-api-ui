@@ -58,9 +58,9 @@ export const getUsers = (skip, limit) => {
           const response = await axios.get(process.env.REACT_APP_USERS_URL + "?skip=" + skip + "&limit=" + limit)
           const responseTotal = await axios.get(process.env.REACT_APP_USERS_URL)
           dispatch(getAllUsers({ items: response.data, totalElements: responseTotal.data.length, loading: false}))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
       } catch (error) {
-          dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 7000}))
       }
   }
 }
@@ -71,9 +71,9 @@ export const createUser = (user) => {
       try {
           const { data } = await axios.post(process.env.REACT_APP_USERS_URL, user)
           dispatch(getUsers(0, 10))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
       } catch (error) {
-          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 7000}))
       }
   }
 }
@@ -84,9 +84,9 @@ export const updateUser = (user) => {
       try {
           const { data } = await axios.put(process.env.REACT_APP_USERS_URL + "/" + user._id, user)
           dispatch(getUsers(0, 10))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
       } catch (error) {
-          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 7000}))
       }
   }
 }
@@ -97,9 +97,9 @@ export const deleteUser = (id) => {
       try {
           const response = await axios.delete(process.env.REACT_APP_USERS_URL + "/" + id)
           dispatch(getUsers(0, 10))
-          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 7000}))
       } catch (error) {
-          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 5000}))
+          dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 7000}))
       }
   }
 }
