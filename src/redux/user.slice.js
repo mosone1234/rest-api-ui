@@ -89,7 +89,7 @@ export const createUser = (user) => {
         dispatch(getUsers(0, getState().user.row))
         dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
     } catch (error) {
-        dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 8000}))
+        dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 8000}))
     }
   }
 }
@@ -104,7 +104,7 @@ export const updateUser = (user) => {
         dispatch(getUsers(0, getState().user.row))
         dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
     } catch (error) {
-        dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 8000}))
+        dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 8000}))
     }
   }
 }
@@ -119,7 +119,7 @@ export const deleteUser = (id) => {
         dispatch(getUsers(0, getState().user.row))
         dispatch(addNotification({open: true, type: "success", message: "Ok: Exito", timeout: 8000}))
     } catch (error) {
-        dispatch(addNotification({open: true, type: "success", message: "Error: Error", timeout: 8000}))
+        dispatch(addNotification({open: true, type: "error", message: "Error: Error", timeout: 8000}))
     }
   }
 }
