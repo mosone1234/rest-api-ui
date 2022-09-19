@@ -1,6 +1,14 @@
 
   # REST-API-UI FRONTEND 
 
+*Puede descargar el contenedor del proyecto del docker hub, el link esta debajo de este parrafo*
+
+**https://hub.docker.com/repository/docker/xhos1234/rest-api-ui-prod**
+
+*El proyecto esta en producción en un servidor digitalocean, puede revisarlo en el link de abajo*
+
+**https://ayarrestapiui.ml/**
+
 **Instalar dependencias**
 
 ```
