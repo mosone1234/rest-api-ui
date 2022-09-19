@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  rest-api-ui-staging:
+    build:
+      context: ../../rest-api-ui
+      dockerfile: Dockerfile
+    container_name: rest-api-ui-staging
+    restart: always
+    ports:
+      - 3200:80

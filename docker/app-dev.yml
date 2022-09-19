@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  rest-api-ui-dev:
+    build:
+      context: ../../rest-api-ui
+      dockerfile: dockerfile.development
+    container_name: rest-api-ui-dev
+    restart: always
+    ports:
+      - 3100:3000
