@@ -13,11 +13,10 @@ import {
 import useUsers from '../hooks/useUsers'
 
 import { getUsers, deleteUser, changeRow } from '../redux/user.slice'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
 
 import DeleteModal from '../modals/DeleteModal'
 import UserFormModal from '../modals/UserFormModal'
-import { useSelector } from "react-redux"
 
 const TableData = () => {
   const { users, totalElements } = useUsers()

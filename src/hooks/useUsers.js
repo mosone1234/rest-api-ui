@@ -4,7 +4,7 @@ import {
 
 // user.slice get users redux
 import { getUsers } from '../redux/user.slice'
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from 'react-redux'
 
 const useUsers = () => {
   const users = useSelector((state) => state.user.items);

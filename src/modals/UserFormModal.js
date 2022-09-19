@@ -16,7 +16,7 @@ import useFormStyles from '../styles/useFormFields'
 
 import { ValidatedField } from '../utils/Input'
 import { updateUser } from '../redux/user.slice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   HandleKeyDown,
@@ -25,8 +25,6 @@ import {
   HandleKeyDownOnlyNumbers,
   HandleKeyDownPhoneNumber,
 } from '../utils/Validation'
-
-import { useSelector } from "react-redux"
 
 const UserFormModal = (props) => {
   const [open, setOpen] = React.useState(false)
@@ -56,7 +54,7 @@ const UserFormModal = (props) => {
     values['lastName'] = values.lastName.trim()
     values['email'] = values.email.trim()
     values['phoneNumber'] = values.phoneNumber.trim()
-    values['cc'] = values.cc
+    // values['cc'] = values.cc.trim()
     setNewUser(Object.assign({}, values))
     if (!values.name) {
       errors.name = "El campo es requerido"

@@ -1,5 +1,5 @@
 # NODE VERSION
-FROM node:14.20.0-alpine AS builder
+FROM node:18-alpine AS builder
 COPY . ./rest-api-ui
 WORKDIR /rest-api-ui
 RUN yarn install
