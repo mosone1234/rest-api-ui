@@ -103,7 +103,7 @@ const TableData = () => {
                       user={user}
                     />
                     <DeleteModal
-                      title={"Esta seguro de eliminar el usuario"}
+                      title={"¿Está seguro de eliminar el usuario?"}
                       description={"Se eliminara el usuario (" + user.name + " " + user.lastName + ")" }
                       handleFunction={() => {
                         deleteUserAction(user._id)

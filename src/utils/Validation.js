@@ -17,7 +17,13 @@ export const HandleKeyDown = (event) => {
 
 // Validacion para correos sin espacios
 export const HandleKeyDownWithoutSpace = (event) => {
-  event.target.value = event.target.value.replace(/\s+$/, "")
+  // event.target.value = event.target.value.replace(/\s+$/, "")
+  let char = String.fromCharCode(event.charCode)
+  if (!/^\s+$/i.test(char)) {
+    return true
+  } else {
+    event.preventDefault()
+  }
 }
 
 // Validacion solo se permiten escribir numberos

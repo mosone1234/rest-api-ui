@@ -23,15 +23,17 @@ const Form1 = ({ setStep = () => {}, user, setUser }) => {
       errors.name = "El campo es requerido"
     } else {
       if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\u00E0-\u00FC\s]*$/i.test(values.name))
-        errors.name = "EL campo solo acepta alfabeto latino Americano"
+        errors.name = "El campo solo acepta alfabeto latinoamericano"
       if (values.name.trim() === "")
-        errors.name = "Debe ingrasas valor en el campo"
+        errors.name = "El campo no acepta espacios en blanco"
     }
     if (!values.lastName) {
       errors.lastName = "El campo es requerido"
     } else {
       if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\u00E0-\u00FC\s]*$/i.test(values.lastName))
-        errors.lastName = "EL campo solo acepta alfabeto latino Americano"
+        errors.lastName = "El campo solo acepta alfabeto latinoamericano"
+      if (values.lastName.trim() === "")
+        errors.lastName = "El campo no acepta espacios en blanco"
     }
     return errors
   }

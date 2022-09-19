@@ -27,26 +27,34 @@ const Form2 = ({ setStep = () => {}, user, setUser }) => {
 
   const validate = values => {
     const errors = {}
-    user['name'] = values.name
-    user['lastName'] = values.lastName
-    user['email'] = values.email
-    user['phoneNumber'] = values.phoneNumber
+    user['name'] = values.name.trim()
+    user['lastName'] = values.lastName.trim()
+    user['email'] = values.email.trim()
+    user['phoneNumber'] = values.phoneNumber.trim()
     user['cc'] = values.cc
     setUser(user)
     if (!values.email) {
       errors.email = "El campo es requerido"
     } else {
       if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
-        errors.email = 'La dirección de correo electrónico no válida'
+        errors.email = "La dirección de correo electrónico no es válida"
     }
     if (!values.phoneNumber) {
       errors.phoneNumber = "El campo es requerido"
+    } else {
+      if (values.phoneNumber.length < 11) {
+        errors.phoneNumber = "Los digitos del telefono tienen que ser >= 11"
+      }
     }
     if (!values.cc) {
       errors.cc = "El campo es requerido"
     } else {
       if (!/^[0-9\b]+$/i.test(values.cc)) {
         errors.cc = "El campo solo acepta numeros"
+      } else {
+        if (values.cc.length < 5) {
+          errors.cc = "El CC debe tener almenos 5 números"
+        }
       }
     }
     return errors
@@ -79,7 +87,7 @@ const Form2 = ({ setStep = () => {}, user, setUser }) => {
                 touched={propform.touched}
                 classe={classes.formField}
                 classError={classes.helperTextError}
-                pressSpace={HandleKeyDownWithoutSpace}
+                press={HandleKeyDownWithoutSpace}
             />
             <ValidatedField
                 name="phoneNumber"

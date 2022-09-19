@@ -33,6 +33,7 @@ const UserFormModal = (props) => {
   const classes = useFormStyles()
   const dispatch = useDispatch()
   const { user } = props
+  const [newUser, setNewUser] = React.useState({})
   const loading = useSelector((state) => state.user.loading);
 
   const handleClickOpen = () => {
@@ -43,40 +44,58 @@ const UserFormModal = (props) => {
     setOpen(false)
   }
 
-  const onSubmitFinish = (usr) => {
-    dispatch(updateUser(usr))
+  const onSubmitFinish = () => {
+    dispatch(updateUser(newUser))
     if (!loading)
       handleClose()
   }
 
   const validate = (values) => {
     const errors = {}
+    values['name'] = values.name.trim()
+    values['lastName'] = values.lastName.trim()
+    values['email'] = values.email.trim()
+    values['phoneNumber'] = values.phoneNumber.trim()
+    values['cc'] = values.cc
+    setNewUser(Object.assign({}, values))
     if (!values.name) {
       errors.name = "El campo es requerido"
     } else {
       if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\u00E0-\u00FC\s]*$/i.test(values.name))
-        errors.name = "EL campo solo acepta alfabeto latino Americano"
+        errors.name = "El campo solo acepta alfabeto latino Americano"
+      if (values.name.trim() === "")
+        errors.name = "El campo no acepta espacios en blanco"
     }
     if (!values.lastName) {
       errors.lastName = "El campo es requerido"
     } else {
       if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\u00E0-\u00FC\s]*$/i.test(values.lastName))
-        errors.lastName = "EL campo solo acepta alfabeto latino Americano"
+        errors.lastName = "El campo solo acepta alfabeto latino Americano"
+      if (values.lastName.trim() === "")
+        errors.lastName = "El campo no acepta espacios en blanco"
     }
     if (!values.email) {
       errors.email = "El campo es requerido"
     } else {
       if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
-        errors.email = "La dirección de correo electrónico no válida"
+        errors.email = "La dirección de correo electrónico no es válida"
     }
     if (!values.phoneNumber) {
       errors.phoneNumber = "El campo es requerido"
+    } else {
+      if (values.phoneNumber.length < 11) {
+        errors.phoneNumber = "Los digitos del telefono tienen que ser >= 11"
+      }
     }
     if (!values.cc) {
       errors.cc = "El campo es requerido"
     } else {
       if (!/^[0-9\b]+$/i.test(values.cc)) {
-        errors.cc = "El campo solo acepta numeros"
+        errors.cc = "El campo solo acepta números"
+      } else {
+        if (values.cc.length < 5) {
+          errors.cc = "El CC debe tener almenos 5 números"
+        }
       }
     }
     return errors
@@ -100,10 +119,10 @@ const UserFormModal = (props) => {
             {"Todos los campos son requeridos"}
           </DialogContentText>
           <Formik
-            initialValues={user}
+            initialValues={Object.assign({}, user)}
             validate={validate}
             onSubmit={(values, actions) => {
-              onSubmitFinish(values)
+              onSubmitFinish()
             }}
           >
             {(propform) => (
@@ -147,7 +166,7 @@ const UserFormModal = (props) => {
                   touched={propform.touched}
                   classe={classes.formFieldTwo}
                   classError={classes.helperTextError}
-                  pressSpace={HandleKeyDownWithoutSpace}
+                  press={HandleKeyDownWithoutSpace}
                 />
                 <ValidatedField
                   name="phoneNumber"
