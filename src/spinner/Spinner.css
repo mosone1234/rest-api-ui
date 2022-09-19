@@ -1,0 +1,90 @@
+/* SPINNER LOADER */
+
+@-moz-keyframes circles-loader {
+    0% {
+        -moz-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }
+
+    50% {
+        -moz-transform: rotate(720deg);
+        transform: rotate(720deg);
+    }
+}
+
+@-webkit-keyframes circles-loader {
+    0% {
+        -webkit-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }
+
+    50% {
+        -webkit-transform: rotate(720deg);
+        transform: rotate(720deg);
+    }
+}
+
+@keyframes circles-loader {
+    0% {
+        -moz-transform: rotate(-720deg);
+        -ms-transform: rotate(-720deg);
+        -webkit-transform: rotate(-720deg);
+        transform: rotate(-720deg);
+    }
+
+    50% {
+        -moz-transform: rotate(720deg);
+        -ms-transform: rotate(720deg);
+        -webkit-transform: rotate(720deg);
+        transform: rotate(720deg);
+    }
+}
+
+.circles-loader:not(:required) {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #2e7d32;
+    border-radius: 100%;
+    -moz-animation: circles-loader 2.5s infinite ease-in-out;
+    -webkit-animation: circles-loader 2.5s infinite ease-in-out;
+    animation: circles-loader 2.5s infinite ease-in-out;
+    -moz-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    top: 45%;
+    left: 48%;
+}
+
+.circles-loader:not(:required)::before {
+    background: #1976d2;
+    border-radius: 100%;
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 18.75px;
+    left: -10.82532px;
+}
+
+.circles-loader:not(:required)::after {
+    background: #d32f2f;
+    border-radius: 100%;
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 18.75px;
+    left: 10.82532px;
+}
+
+.loader-bg {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    top: 0px;
+    left: 0px;
+    z-index: 52000;
+}

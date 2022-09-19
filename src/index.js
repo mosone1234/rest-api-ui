@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store'; // ADD STORE REDUX TOOLKIT
-import Notification from './components/Notification'; // ADD NOTIFICATIONS
+import store from './redux/store'; // ADD: STORE REDUX TOOLKIT
+import Notification from './components/Notification'; // ADD: NOTIFICATIONS
+import Spinner from './spinner/Spinner' // ADD: SPINNER LOADER
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Notification />
+      <Spinner />
       <App />
     </Provider>
   </React.StrictMode>,
