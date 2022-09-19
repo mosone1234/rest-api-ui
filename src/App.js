@@ -30,6 +30,7 @@ const steps = [
 
 const App = () => {
   const [step, setStep] = useState(0)
+  const [user, setUser] = useState({ name: "", lastName: "", email: "", phoneNumber: "", cc: "" })
 
   return (
     <Container
@@ -68,7 +69,8 @@ const App = () => {
           >
             {/* {steps[step].componente} */}
             {/* Modificando los props de los componentes para enviar [user, setUser] a FORM1 FORM2 para interacturar con el STEP 1 2 */}
-            {steps[step].componente = { ...steps[step].componente, props: { setStep: setStep }}}
+            {/* Passing [user, userState] to FORM1 FORM2 */}
+            {steps[step].componente = { ...steps[step].componente, props: { setStep: setStep, user: user, setUser: setUser }}}
           </Box>
         </Grid>
         <Grid
