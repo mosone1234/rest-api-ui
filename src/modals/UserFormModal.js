@@ -112,7 +112,8 @@ const UserFormModal = (props) => {
                   handleBlur={propform.handleBlur}
                   errors={propform.errors}
                   touched={propform.touched}
-                  classe={classes}
+                  classe={classes.formFieldTwo}
+                  classError={classes.helperTextError}
                   press={HandleKeyPress}
                   pressSpace={HandleKeyDown}
                 />
@@ -125,7 +126,8 @@ const UserFormModal = (props) => {
                   handleBlur={propform.handleBlur}
                   errors={propform.errors}
                   touched={propform.touched}
-                  classe={classes}
+                  classe={classes.formFieldTwo}
+                  classError={classes.helperTextError}
                   press={HandleKeyPress}
                   pressSpace={HandleKeyDown}
                 />
@@ -138,7 +140,8 @@ const UserFormModal = (props) => {
                   handleBlur={propform.handleBlur}
                   errors={propform.errors}
                   touched={propform.touched}
-                  classe={classes}
+                  classe={classes.formFieldTwo}
+                  classError={classes.helperTextError}
                   pressSpace={HandleKeyDownWithoutSpace}
                 />
                 <ValidatedField
@@ -150,9 +153,10 @@ const UserFormModal = (props) => {
                   handleBlur={propform.handleBlur}
                   errors={propform.errors}
                   touched={propform.touched}
+                  classe={classes.formFieldTwo}
+                  classError={classes.helperTextError}
                   pressSpace={HandleKeyDownPhoneNumber}
                   press={HandleKeyDownOnlyNumbers}
-                  classe={classes}
                 />
                 <ValidatedField
                   name="cc"
@@ -164,6 +168,7 @@ const UserFormModal = (props) => {
                   errors={propform.errors}
                   touched={propform.touched}
                   classe={classes}
+                  classError={classes.helperTextError}
                   press={HandleKeyDownOnlyNumbers}
                 />
               </form>

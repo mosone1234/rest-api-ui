@@ -14,6 +14,7 @@ export const ValidatedField = memo(
     press,
     pressSpace,
     classe,
+    classError
   }) => {
     return (
       <>
@@ -30,13 +31,10 @@ export const ValidatedField = memo(
           onBlur={handleBlur}
           error={errors[name] && touched[name]}
           helperText={errors[name] && touched[name] ? errors[name] : null}
-          style={{
-            marginBottom: "2.5rem",
-          }}
           onKeyPress={press}
           onKeyDown={pressSpace}
-          className={classe.formField}
-          // FormHelperTextProps={{ classes: { root: classe.formField } }}
+          className={classe}
+          FormHelperTextProps={{ classes: { root: classError } }}
         />
       </>
     );

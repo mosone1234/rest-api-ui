@@ -77,7 +77,8 @@ const Form2 = ({ setStep = () => {}, user, setUser }) => {
                 handleBlur={propform.handleBlur}
                 errors={propform.errors}
                 touched={propform.touched}
-                classe={classes}
+                classe={classes.formField}
+                classError={classes.helperTextError}
                 pressSpace={HandleKeyDownWithoutSpace}
             />
             <ValidatedField
@@ -89,10 +90,10 @@ const Form2 = ({ setStep = () => {}, user, setUser }) => {
                 handleBlur={propform.handleBlur}
                 errors={propform.errors}
                 touched={propform.touched}
+                classe={classes.formField}
+                classError={classes.helperTextError}
                 pressSpace={HandleKeyDownPhoneNumber}
-
                 press={HandleKeyDownOnlyNumbers}
-                classe={classes}
             />
             <ValidatedField
                 name="cc"
@@ -103,7 +104,8 @@ const Form2 = ({ setStep = () => {}, user, setUser }) => {
                 handleBlur={propform.handleBlur}
                 errors={propform.errors}
                 touched={propform.touched}
-                classe={classes}
+                classe={classes.formField}
+                classError={classes.helperTextError}
                 press={HandleKeyDownOnlyNumbers}
             />
           </form>

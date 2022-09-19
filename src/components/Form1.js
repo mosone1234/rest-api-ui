@@ -60,7 +60,8 @@ const Form1 = ({ setStep = () => {}, user, setUser }) => {
                 handleBlur={propform.handleBlur}
                 errors={propform.errors}
                 touched={propform.touched}
-                classe={classes}
+                classe={classes.formField}
+                classError={classes.helperTextError}
                 press={HandleKeyPress}
                 pressSpace={HandleKeyDown}
             />
@@ -73,7 +74,8 @@ const Form1 = ({ setStep = () => {}, user, setUser }) => {
                 handleBlur={propform.handleBlur}
                 errors={propform.errors}
                 touched={propform.touched}
-                classe={classes}
+                classe={classes.formField}
+                classError={classes.helperTextError}
                 press={HandleKeyPress}
                 pressSpace={HandleKeyDown}
             />
