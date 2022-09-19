@@ -66,7 +66,9 @@ const App = () => {
               marginTop: '4em'
             }}
           >
-            {steps[step].componente}
+            {/* {steps[step].componente} */}
+            {/* Modificando los props de los componentes para enviar [user, setUser] a FORM1 FORM2 para interacturar con el STEP 1 2 */}
+            {steps[step].componente = { ...steps[step].componente, props: { setStep: setStep }}}
           </Box>
         </Grid>
         <Grid
