@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store from './redux/store'; // ADD STORE REDUX TOOLKIT
+import Notification from './components/Notification'; // ADD NOTIFICATIONS
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <Notification />
       <App />
     </Provider>
   </React.StrictMode>,
